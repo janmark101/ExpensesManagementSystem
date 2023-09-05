@@ -1,0 +1,39 @@
+<div class="panel">
+    <h2>Analytics</h2>
+    <p>tu beda jakies wykresy </p>
+</div>
+
+<div class="panel">
+    <h1>Expenses</h1>
+    <hr>
+        <div class="panel-items" *ngFor="let option of ExpensesIcons">
+            <fa-icon [icon]="option.icon"></fa-icon>
+            <small style="margin-left: 5px;">{{option.text}}</small>
+        </div>
+        <br>
+        <hr>
+        <div class="panel-details" *ngFor="let detail of PanelDetails">
+            <fa-icon [icon]="detail.icon"></fa-icon>
+            <small style="margin-left: 5px;">{{detail.text}}</small>
+        </div>
+        <hr>
+        <div class="expenses-item" *ngFor="let item of Expenses">
+            <div class="item-style">
+            <p>{{item.date}}</p>
+            </div>
+            <div class="item-style">
+                <p>{{CategoryName(item.category_name)}}</p> 
+            </div>
+            <div class="item-style">
+                <p>{{item.description}}</p>
+            </div >
+            <div class="item-style">
+                <p>{{item.amount}}</p>  
+            </div>
+        </div>
+</div>
+
+<div class="panel">
+    <h2>Transactions</h2>
+</div>
+

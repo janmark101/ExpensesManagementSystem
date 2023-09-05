@@ -1,0 +1,53 @@
+.sidenav {
+    margin-left: 5px;
+    border: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 170px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #a1a1a1; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+  }
+
+  .sidenav .sidenav-icons {
+    margin-top: 50%;
+  }
+  
+  /* The navigation menu links */
+  .sidenav .sidenav-icons fa-icon {
+    padding-bottom: 10%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 35px;
+    color: #000000;
+    display: block;
+  }
+  .sidenav .sidenav-icons span {
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    color: #000000;
+    display: block;
+  }
+  
+  .sidenav-icons:hover{
+    transform: scale(1.1); 
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  
+  /* Style page content */
+  .main {
+    margin: 10px 10px 0px 200px ;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
