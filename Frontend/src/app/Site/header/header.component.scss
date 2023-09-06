@@ -1,6 +1,8 @@
 .sidenav {
-    margin-left: 5px;
-    border: 2px solid black;
+    margin-left: 10px;
+    margin-top: 5px;
+    
+
     border-radius: 10px 10px 10px 10px;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 170px; /* Set the width of the sidebar */
@@ -8,9 +10,10 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #a1a1a1; /* Black */
+    background-color: #fff5f5; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.3) ;
   }
 
   .sidenav .sidenav-icons {

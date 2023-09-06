@@ -13,13 +13,16 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import {MatDividerModule } from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChartComponent } from './Site/chart/chart.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatIconModule,
     MatDividerModule,
     FontAwesomeModule,
+    FormsModule,
   ],
   providers: [SiteServiceService],
   bootstrap: [AppComponent]
