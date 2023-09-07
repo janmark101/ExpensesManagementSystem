@@ -8,8 +8,6 @@
         
     </app-chart>
 </div>
-<button (click)="ss()">sadkulhaldkh</button>
-
 <div class="panel">
     <h1 class="header">Expenses</h1>
     <hr>
@@ -46,7 +44,7 @@
             <div class="table-column">{{ item.date }}</div>
             <div class="table-column">{{ CategoryName(item.category_name) }}</div>
             <div class="table-column">{{ item.description }}</div>
-            <div class="table-column">{{ item.amount }}</div>
+            <div class="table-column">{{ item.amount }} PLN</div>
           </div>
 </div>
 
@@ -81,7 +79,7 @@
         <div class="table-column">{{ item.date }}</div>
         <div class="table-column">{{ item.expense }}</div>
         <div class="table-column">{{ item.description }}</div>
-        <div class="table-column">{{ item.amount }}</div>
+        <div class="table-column">{{ item.amount }} PLN</div>
       </div>
 </div>
 

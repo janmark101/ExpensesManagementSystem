@@ -63,42 +63,7 @@ export class HomeComponent implements OnInit {
     
   }
 
-  ss(){
-    console.log(this.Expenses);
-    console.log(this.Transactions);
-    // let sum = 0;
-    // for (const expense of this.Expenses){
-    //   for(const transaction of this.Transactions){
-    //     if (expense.id  == transaction.expense){
-    //       sum += parseFloat(transaction.amount);
-    //     }
-    //     console.log(sum, expense.id);
-        
-    //   }
-    //   sum = 0;
-    // }
-    const summedExpenses = this.Expenses.reduce((result, expense) => {
-      const matchingExpenses = this.Transactions.filter(
-        (expenseExpense) => expenseExpense.expense === expense.id
-      );
-    
-      if (matchingExpenses.length > 0) {
-        const totalAmountExpense = matchingExpenses.reduce(
-          (total, expenseExpense) => total + parseFloat(expenseExpense.amount),
-          0
-        );
-        result[expense.id] = totalAmountExpense;
-      } else {
-        result[expense.id] = 0; // Jeśli brak pasujących rekordów, to suma wynosi 0
-      }
-    
-      return result;
-    }, {});
-    
-    console.log(summedExpenses);
-    
-    
-  }
+
 
   CategoryName(itemID:number){
     for (const category of this.Categories){
