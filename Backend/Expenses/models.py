@@ -16,6 +16,12 @@ class Expensesdb(models.Model):
     def __str__(self):
         return f"{self.category_name} Expanses {self.date}"
     
+    def update_amount(self):
+        transactions = Transaction.objects.filter(expense=self)
+        total_amount = sum([transaction.amount for transaction in transactions])
+        self.amount = total_amount
+        self.save()
+        
 class Transaction(models.Model):
     amount = models.DecimalField(max_digits=10,decimal_places=2,null=False)
     date = models.DateField(null=False)
@@ -24,4 +30,8 @@ class Transaction(models.Model):
     
     def __str__(self):
         return f"{self.expense} Transaction {self.date}"
+    
+    def save(self,*args,**kwargs):
+        super(Transaction,self).save(*args,**kwargs)
+        self.expense.update_amount()
     
