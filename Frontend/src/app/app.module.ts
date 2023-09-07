@@ -15,7 +15,10 @@ import {MatDividerModule } from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChartComponent } from './Site/chart/chart.component';
 import { FormsModule } from '@angular/forms';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,10 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     FontAwesomeModule,
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule, 
+    MatDatepickerModule, 
+    MatNativeDateModule,
   ],
   providers: [SiteServiceService],
   bootstrap: [AppComponent]

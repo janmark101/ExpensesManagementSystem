@@ -1,34 +1,47 @@
+<link href='https://fonts.googleapis.com/css?family=Kaushan Script' rel='stylesheet'>
+<body>
+    
 <div class="panel">
-    <h1>Analytics</h1>
+    <h1 class="header">Analytics</h1>
+    <hr>
     <app-chart>
         
     </app-chart>
 </div>
+<button (click)="ss()">sadkulhaldkh</button>
 
 <div class="panel">
-    <h1>Expenses</h1>
+    <h1 class="header">Expenses</h1>
     <hr>
         <div class="panel-items">
-            <fa-icon [icon]="ExpensesIcons[0].icon"></fa-icon>
-            <small style="margin-left: 5px;" >{{ExpensesIcons[0].text}}</small>
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDateExpense" >
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+              </mat-form-field>
         </div>
         <div class="panel-items">
             <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
            
-            <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" (change)="FilterByCategory()">
+            <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" (change)="FilterExpense()">
                 <option value="">Choose Category</option>
                 <option *ngFor="let category of Categories">{{ category.category_name }}</option>
               </select>
         </div>
+        <div class="panel-items">
+            <fa-icon [icon]="ExpensesIcons[2].icon"></fa-icon>
+            <small style="margin-left: 5px;" (click)="ResetFilter('Expense')">{{ExpensesIcons[2].text}}</small>
+        </div>
         <br>
-        <hr>
+
         <div class="table-header" >
-            <div class="table-column" *ngFor="let detail of PanelDetails">
+            <div class="table-column" *ngFor="let detail of ExpenseDetails">
                 <fa-icon [icon]="detail.icon"></fa-icon>
-                <small style="margin-left: 5px;cursor: pointer;"(click)="OrderBy(detail.text)">{{detail.text}}</small> 
+                <small style="margin-left: 5px;cursor: pointer;"(click)="OrderBy(detail.text,'Expense')">{{detail.text}}</small> 
             </div>
         </div>
-        <div class="table-row" *ngFor="let item of FilterByCategory()">
+        <div class="table-row" *ngFor="let item of FilterExpense()">
             <div class="table-column">{{ item.id }}</div>
             <div class="table-column">{{ item.date }}</div>
             <div class="table-column">{{ CategoryName(item.category_name) }}</div>
@@ -38,8 +51,42 @@
 </div>
 
 <div class="panel">
-    <h2>Transactions</h2>
+    <h1 class="header">Transactions</h1>
+    <hr>
+    <div class="panel-items">
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedDateTransaction" >
+            <mat-datepicker-toggle matIconSuffix [for]="picker2" ></mat-datepicker-toggle>
+            <mat-datepicker #picker2 ></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <div class="panel-items">
+        <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
+       <input placeholder="Search by expense ID" style="margin-left: 5px;width: 75%;font-size: 17px;" [(ngModel)]="selectedExpenseID">
+    </div>
+    <div class="panel-items">
+        <fa-icon [icon]="ExpensesIcons[2].icon"></fa-icon>
+        <small style="margin-left: 5px;" (click)="ResetFilter('Transaction')">{{ExpensesIcons[2].text}}</small>
+    </div>
+    <br>
+    <div class="table-header" >
+        <div class="table-column" *ngFor="let detail of TransactionDetail">
+            <fa-icon [icon]="detail.icon"></fa-icon>
+            <small style="margin-left: 5px;cursor: pointer;"(click)="OrderBy(detail.text,'Transaction')">{{detail.text}}</small> 
+        </div>
+    </div>
+    <div class="table-row" *ngFor="let item of FilterTransactions()">
+        <div class="table-column">{{ item.id }}</div>
+        <div class="table-column">{{ item.date }}</div>
+        <div class="table-column">{{ item.expense }}</div>
+        <div class="table-column">{{ item.description }}</div>
+        <div class="table-column">{{ item.amount }}</div>
+      </div>
 </div>
+
+<br>
+</body>
 
 
 
