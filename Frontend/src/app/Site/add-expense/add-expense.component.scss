@@ -1,0 +1,75 @@
+.panel {
+    border-radius: 10px;
+    margin-bottom: 2%; 
+    background-color:  #fff5f5;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.3) ;
+    padding: 5px 5px 5px 5px;
+}
+
+.header {
+    font-size: 45px;
+    font-family: "Times New Roman", Times, serif;
+    margin : 10px 0px 0px 10px;
+  }
+  
+.panel-items {
+    display: inline-block; /* Wyświetl elementy obok siebie */
+    margin: 0px 5% 0px 5%;
+    padding: 10px; /* Dodaj wypełnienie wewnętrzne, aby uzyskać odstęp od zawartości */
+    font-size: 20px;
+    font-family: Georgia, Times, “Times New Roman”, serif;
+}
+
+.panel-textarea {
+    text-align: center;
+    margin: 3% 5% 0px 5%;
+    padding: 10px; /* Dodaj wypełnienie wewnętrzne, aby uzyskać odstęp od zawartości */
+    font-size: 25px;
+    font-family: Georgia, Times, “Times New Roman”, serif;
+}
+
+.custom-select {
+    margin-left: 5px;
+    padding: 5px; /* Dodajemy odstęp wokół selecta */
+    border: 1px solid #878383; /* Dodajemy obramowanie */
+    border-radius: 5px; /* Zaokrąglamy rogi */
+    font-size: 16px; /* Rozmiar czcionki */
+    background-color: #fff; /* Tło */
+    color: #333; /* Kolor tekstu */
+  }
+
+  .custom-select option {
+    font-size: 16px; /* Rozmiar czcionki opcji */
+    padding: 5px 10px; /* Odstępy wewnątrz opcji */
+  }
+  
+  /* Stylowanie, gdy select jest na focusie */
+  .custom-select:focus {
+    outline: none; /* Usuwamy domyślną obramowanie na focusie */
+    border-color: #007bff; /* Zmieniamy kolor obramowania na niebieski na focusie */
+  }
+
+  .custom-button {
+    margin-bottom: 10px;
+    padding: 10px 20px; /* Dodajemy odstępy wewnątrz przycisku */
+    border: none; /* Usuwamy domyślny border */
+    border-radius: 5px; /* Zaokrąglamy rogi */
+    font-size: 20px; /* Rozmiar czcionki */
+    background-color: #878383; /* Kolor tła */
+    color: #fff; /* Kolor tekstu */
+    cursor: pointer; /* Zmieniamy kursor na wskaźnik na hoverze */
+    transition: transform 0.2s; /* Dodajemy efekt przejścia */
+  }
+  
+  /* Stylowanie, gdy przycisk jest na hoverze */
+  .custom-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Powiększenie o 10% na hoverze */
+  }
+
+
+
+  
+  
+  
+  

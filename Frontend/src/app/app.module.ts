@@ -19,13 +19,19 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import { AddExpenseComponent } from './Site/add-expense/add-expense.component';
+import { AddTransactionComponent } from './Site/add-transaction/add-transaction.component';
+import { LoadCircleComponent } from './Site/load-circle/load-circle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ChartComponent
+    ChartComponent,
+    AddExpenseComponent,
+    AddTransactionComponent,
+    LoadCircleComponent
   ],
   imports: [
     BrowserModule,

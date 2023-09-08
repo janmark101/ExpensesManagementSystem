@@ -10,15 +10,18 @@ export class HeaderComponent {
 
   icons = [{
     name:'Home',
-    icon: faHouse
+    icon: faHouse,
+    router : '/'
   },
   {
     name:'Add Expense',
-    icon: faCartShopping
+    icon: faCartShopping,
+    router:'/addExpense'
   },
   {
     name:'Add Transaction',
-    icon: faBarcode
+    icon: faBarcode,
+    router:'/addTransaction'
   }
 ]
 

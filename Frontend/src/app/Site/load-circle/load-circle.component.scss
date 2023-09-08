@@ -1,0 +1,65 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+  }
+  
+  .loader {
+    border: 2px solid green;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite, checkmark 1s forwards 1s;
+  }
+  
+  .checkmark {
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    animation: scaleUp 1s 1s forwards;
+    opacity: 0;
+  }
+  
+  .checkmark-circle {
+    stroke: green;
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-linecap: round;
+    fill: none;
+    animation: stroke 0.6s 1.8s forwards;
+  }
+  
+  .checkmark-check {
+    stroke:green;
+    stroke-width: 2;
+    stroke-linecap: round;
+    fill: none;
+    animation: stroke 0.6s 1.8s forwards;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes checkmark {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+  }
+  
+  @keyframes scaleUp {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes stroke {
+    0% {
+      stroke-dashoffset: 166;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }

@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
-import {faCalendarDays,faFilter,faCaretDown,faXmark} from '@fortawesome/free-solid-svg-icons'
+
 
 
 @Component({
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
 
     this.Service.getExpenses().pipe(take(1)).subscribe((data:any)=>{
       this.Expenses = data;
+      console.log(data);  
       
     },(error:any)=>{
       console.error(error);

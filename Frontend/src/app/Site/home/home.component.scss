@@ -1,6 +1,3 @@
-.body {
-  font-family: courier,monospace;
-}
 
 .panel {
     border-radius: 10px;
@@ -12,7 +9,7 @@
 
 .header {
   font-size: 45px;
-  font-family: 'Kaushan Script';
+  font-family: "Times New Roman", Times, serif;
   margin : 10px 0px 0px 10px;
 }
 
@@ -102,4 +99,25 @@
     border-right: none;
   }
   
+
+  .custom-select {
+    margin-left: 5px;
+    padding: 5px; /* Dodajemy odstęp wokół selecta */
+    border: 1px solid #878383; /* Dodajemy obramowanie */
+    border-radius: 5px; /* Zaokrąglamy rogi */
+    font-size: 16px; /* Rozmiar czcionki */
+    background-color: #fff; /* Tło */
+    color: #333; /* Kolor tekstu */
+  }
+
+  .custom-select option {
+    font-size: 16px; /* Rozmiar czcionki opcji */
+    padding: 5px 10px; /* Odstępy wewnątrz opcji */
+  }
+  
+  /* Stylowanie, gdy select jest na focusie */
+  .custom-select:focus {
+    outline: none; /* Usuwamy domyślną obramowanie na focusie */
+    border-color: #007bff; /* Zmieniamy kolor obramowania na niebieski na focusie */
+  }
   

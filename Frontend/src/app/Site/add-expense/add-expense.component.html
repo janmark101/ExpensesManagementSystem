@@ -1,0 +1,52 @@
+<div class="panel" style="margin-top: 5%;">
+    <h1 class="header">Add expense</h1>
+    <hr>
+    <form (ngSubmit)="OnSubmit(form)" #form ="ngForm" *ngIf="CreatingExpense==false;else Creating">
+        <div style="text-align: center;">
+        <div class="panel-items">
+            <mat-form-field >
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDateExpense" name="selectedDateExpense" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="panel-items">
+        <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" required class="custom-select">
+            <option value="" >Choose Category</option>
+            <option *ngFor="let category of Categories" >{{ category.category_name }}</option>
+          </select>
+      </div>
+      <div class="panel-textarea">
+        <textarea type="textarea" placeholder="Description" ngModel name="description" style="width: 60%;font-size: 25px;" required class="custom-select"></textarea> 
+      </div>
+        <div style="text-align: center;">
+            <button style="margin-top: 3%;" class="custom-button">Create</button>   
+        </div>
+    </div>
+</form>
+  <ng-template #Creating>
+      <div style="text-align: center;margin: 6% 0px 4% 0px;">
+
+        <app-load-circle></app-load-circle>
+        
+            <div style="text-align: center;">
+        
+              <p style="color: green;font-size: 20px;" *ngIf="ShowDetails">Created expense succesfully!</p>
+              <button class="btn btn-success" (click)="created_succesfully()" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetails"> OK</button>
+            </div>
+      </div>  
+  </ng-template>
+
+    <div style="text-align: center;" *ngIf="ShowError==true">
+        <p style="color: red;font-size: 20px;margin: 15px 0 15px 0;">Something went wrong!</p>
+    </div>
+    
+
+
+</div>
+
+
+
+

@@ -1,7 +1,7 @@
 <!-- Side navigation -->
 <div class="sidenav" >
-    <div class="sidenav-icons" *ngFor="let icon of icons">
-        <fa-icon [icon]="icon.icon">
+    <div class="sidenav-icons" *ngFor="let icon of icons" routerLink="{{icon.router}}">
+        <fa-icon [icon]="icon.icon" >
         </fa-icon>
         <span>{{icon.name}}</span>
     </div>

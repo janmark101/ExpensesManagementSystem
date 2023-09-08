@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {faCalendarDays,faFilter,faCaretDown,faXmark} from '@fortawesome/free-solid-svg-icons'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -84,5 +85,8 @@ export class SiteServiceService {
     return this.http.get(`${this.Api_Url}Transaction.json`);
   }
 
+  createExpense(expense:any){
+    return this.http.post(`${this.Api_Url}Expenses.json`,expense);
+  }
   
 }

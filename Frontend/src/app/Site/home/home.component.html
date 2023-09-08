@@ -16,13 +16,14 @@
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDateExpense" >
                 <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker #picker ></mat-datepicker>
               </mat-form-field>
         </div>
         <div class="panel-items">
             <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
            
-            <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" (change)="FilterExpense()">
+            <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" (change)="FilterExpense()" class="custom-select">
                 <option value="">Choose Category</option>
                 <option *ngFor="let category of Categories">{{ category.category_name }}</option>
               </select>
@@ -56,12 +57,13 @@
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedDateTransaction" >
             <mat-datepicker-toggle matIconSuffix [for]="picker2" ></mat-datepicker-toggle>
+            <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker #picker2 ></mat-datepicker>
           </mat-form-field>
     </div>
     <div class="panel-items">
         <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
-       <input placeholder="Search by expense ID" style="margin-left: 5px;width: 75%;font-size: 17px;" [(ngModel)]="selectedExpenseID">
+       <input placeholder="Search by expense ID" style="margin-left: 5px;width: 75%;font-size: 17px;" [(ngModel)]="selectedExpenseID" class="custom-select">
     </div>
     <div class="panel-items">
         <fa-icon [icon]="ExpensesIcons[2].icon"></fa-icon>
