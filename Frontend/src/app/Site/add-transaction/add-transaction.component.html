@@ -1,4 +1,72 @@
-<p>add-transaction works!</p>
-<div class="panel-items">
-    <input type="text" placeholder="Amount" ngModel name="amount">       
+<div class="panel" style="margin-top: 5%;">
+  <h1 class="header">Add transaction</h1>
+  <hr>
+  <form (ngSubmit)="OnSubmit(form)" #form ="ngForm" *ngIf="CreatingTransaction==false;else Creating">
+      <div style="text-align: center;">
+      <div class="panel-items">
+          <mat-form-field >
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDateTransaction" name="selectedDateTransaction" required>
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+              <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="panel-items">
+      <select [(ngModel)]="selectedExpense" name="selectedExpense" style="margin-left: 5px;" required class="custom-select">
+          <option value="" >Choose Expense</option>
+          <option *ngFor="let expense of Expenses" >{{ expense.date }}, ID : {{expense.id}}</option>
+        </select>
+    </div>
+    <div class="panel-textarea">
+      <textarea type="textarea" placeholder="Description" ngModel name="description" style="width: 60%;font-size: 25px;" required class="custom-select"></textarea> 
+    </div>
+    <div class="panel-items">
+      <input placeholder="Amount" ngModel name ="amount" required class="custom-select">
+    </div>
+      <div style="text-align: center;">
+          <button style="margin-top: 3%;" class="custom-button">Create</button>   
+      </div>
   </div>
+</form>
+<ng-template #Creating>
+    <div style="text-align: center;margin: 6% 0px 4% 0px;">
+
+      <app-load-circle></app-load-circle>
+      
+          <div style="text-align: center;">
+      
+            <p style="color: green;font-size: 20px;" *ngIf="ShowDetails">Created transaction succesfully!</p>
+            <button class="btn btn-success" (click)="created_succesfully()" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetails"> OK</button>
+          </div>
+    </div>  
+</ng-template>
+
+  <div style="text-align: center;" *ngIf="ShowError==true">
+      <p style="color: red;font-size: 20px;margin: 15px 0 15px 0;">Something went wrong!</p>
+  </div>
+</div>
+
+<div class="panel">
+  <h1 class="header">Expenses</h1>
+    <hr>
+        
+        <br>
+
+        <div class="table-header" >
+            <div class="table-column" *ngFor="let detail of ExpenseDetails">
+                <fa-icon [icon]="detail.icon"></fa-icon>
+                <small style="margin-left: 5px;cursor: pointer;">{{detail.text}}</small> 
+            </div>
+        </div>
+        <div class="table-row" *ngFor="let item of Expenses">
+            <div class="table-column">{{ item.id }}</div>
+            <div class="table-column">{{ item.date }}</div>
+            <div class="table-column">{{ CategoryName(item.category_name) }}</div>
+            <div class="table-column">{{ item.description }}</div>
+            <div class="table-column">{{ item.amount }} PLN</div>
+          </div>
+</div>
+
+
+

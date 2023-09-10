@@ -19,12 +19,16 @@ export class AddExpenseComponent implements OnInit{
 
   ShowError : boolean = false;
   CreatingExpense : boolean = false;
+  CreatingCategory : boolean = false;
+  add_Category : boolean = false;
+  form_invalid_category : boolean = false;
 
   public Categories : any[] = [];
 
   Created = faCheck
 
   ShowDetails : boolean = false;
+  ShowDetailsCategory : boolean = false;
   
 
   constructor(private Service :SiteServiceService){}
@@ -78,8 +82,41 @@ export class AddExpenseComponent implements OnInit{
     }     
   }
 
+  OnSubmitCategory(form:NgForm){
+    if(form.valid){
+      let newCategory = {
+        category_name:form.value.category
+      }
+      
+      this.Service.createCategory(newCategory).subscribe(response =>{
+        this.Categories.push(response);
+        this.CreatingCategory = true;
+        setTimeout(()=>{
+          this.ShowDetailsCategory = true;
+        },1200);
+        
+      },error=>{
+        this.form_invalid_category = true;        
+      })
+    }
+    else{
+      this.form_invalid_category = true;
+    }
+
+    
+  }
+
   created_succesfully(){    
     this.CreatingExpense = false;
     this.ShowDetails = false;
+  }
+
+  created_succesfullyCategory(){    
+    this.CreatingCategory = false;
+    this.ShowDetailsCategory = false;
+  }
+
+  create_new_category(){
+    this.add_Category = !this.add_Category;
   }
 }

@@ -17,12 +17,13 @@
             <option value="" >Choose Category</option>
             <option *ngFor="let category of Categories" >{{ category.category_name }}</option>
           </select>
+          <button class="button-add-category" (click)="create_new_category()" type="button" [ngStyle]="{'background-color' : add_Category ? '#878383' : ' #0056b3'}">+</button>
       </div>
       <div class="panel-textarea">
         <textarea type="textarea" placeholder="Description" ngModel name="description" style="width: 60%;font-size: 25px;" required class="custom-select"></textarea> 
       </div>
         <div style="text-align: center;">
-            <button style="margin-top: 3%;" class="custom-button">Create</button>   
+            <button style="margin-top: 3%;" class="custom-button" type="submit" >Create</button>   
         </div>
     </div>
 </form>
@@ -47,6 +48,32 @@
 
 </div>
 
+<div class="panel" *ngIf="add_Category">
+  <h1 class="header">Add category</h1>
+    <hr>
+    <form (ngSubmit)="OnSubmitCategory(form)" #form ="ngForm" *ngIf="CreatingCategory==false;else CreatingCate">
+      <div style="text-align: center;">
+        <input class="custom-select" placeholder="Category" ngModel name="category" required>
+      </div>
+      <div style="text-align: center;">
+        <button class="custom-button" style="margin-top: 3%;" type="submit"> Create</button>
+      </div>
+      <p *ngIf="form_invalid_category">Something went wrong!</p>
+    </form>
+
+    <ng-template #CreatingCate>
+      <div style="text-align: center;margin: 6% 0px 4% 0px;">
+
+        <app-load-circle></app-load-circle>
+        
+            <div style="text-align: center;" >
+        
+              <p style="color: green;font-size: 20px;" *ngIf="ShowDetailsCategory">Created category succesfully!</p>
+              <button class="btn btn-success" (click)="created_succesfullyCategory()" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetailsCategory"> OK</button>
+            </div>
+      </div>  
+  </ng-template>
+</div>
 
 
 

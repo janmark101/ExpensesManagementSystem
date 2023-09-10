@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
     this.Service.getCategory().pipe(take(1)).subscribe((data:any)=>{
       this.Categories = data;
-      
+      console.log(data);  
     },(error:any)=>{
       console.error(error);
       
@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
 
     this.Service.getExpenses().pipe(take(1)).subscribe((data:any)=>{
       this.Expenses = data;
-      console.log(data);  
       
     },(error:any)=>{
       console.error(error);

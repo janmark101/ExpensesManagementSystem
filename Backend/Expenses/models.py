@@ -41,7 +41,6 @@ class Transaction(models.Model):
             super(Transaction,self).save(*args,**kwargs)
             self.expense.update_amount()
         except Transaction.DoesNotExist:
-            print("nowy")
             super(Transaction,self).save(*args,**kwargs)
             self.expense.update_amount()
 

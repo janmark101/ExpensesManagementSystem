@@ -67,7 +67,21 @@
     transform: scale(1.1); /* Powiększenie o 10% na hoverze */
   }
 
+.button-add-category { 
+  
+  background-color: #878383;
+  color: #fff;
+  border: 1px solid #878383;
+  padding: 5px;
+  font-size: 30px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
 
+.button-add-category:hover{
+  background-color: #0056b3;
+  transform: scale(1.1)
+}
 
   
   

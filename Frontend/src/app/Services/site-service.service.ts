@@ -88,5 +88,13 @@ export class SiteServiceService {
   createExpense(expense:any){
     return this.http.post(`${this.Api_Url}Expenses.json`,expense);
   }
+
+  createTransaction(transaction:any){
+    return this.http.post(`${this.Api_Url}Transaction.json`,transaction);
+  }
+
+  createCategory(category:any){
+    return this.http.post(`${this.Api_Url}Category.json`,category);
+  }
   
 }
