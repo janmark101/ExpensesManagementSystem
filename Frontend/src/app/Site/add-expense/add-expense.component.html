@@ -35,7 +35,7 @@
             <div style="text-align: center;">
         
               <p style="color: green;font-size: 20px;" *ngIf="ShowDetails">Created expense succesfully!</p>
-              <button class="btn btn-success" (click)="created_succesfully()" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetails"> OK</button>
+              <button class="btn btn-success" (click)="created_succesfully('expense')" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetails"> OK</button>
             </div>
       </div>  
   </ng-template>
@@ -69,7 +69,7 @@
             <div style="text-align: center;" >
         
               <p style="color: green;font-size: 20px;" *ngIf="ShowDetailsCategory">Created category succesfully!</p>
-              <button class="btn btn-success" (click)="created_succesfullyCategory()" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetailsCategory"> OK</button>
+              <button class="btn btn-success" (click)="created_succesfully('category')" style="margin-top: 15px;width: 150px;" *ngIf="ShowDetailsCategory"> OK</button>
             </div>
       </div>  
   </ng-template>

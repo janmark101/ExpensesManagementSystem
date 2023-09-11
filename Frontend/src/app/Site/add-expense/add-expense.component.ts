@@ -69,6 +69,8 @@ export class AddExpenseComponent implements OnInit{
         this.CreatingExpense = true;
         setTimeout(()=>{
           this.ShowDetails = true;
+          this.selectedDateExpense = null;
+          this.selectedCategory = null;
         },1200);
           
         },error=>{
@@ -103,18 +105,19 @@ export class AddExpenseComponent implements OnInit{
       this.form_invalid_category = true;
     }
 
-    
   }
 
-  created_succesfully(){    
-    this.CreatingExpense = false;
-    this.ShowDetails = false;
+  created_succesfully(text:string){    
+    if (text = 'category'){
+      this.CreatingCategory = false;
+      this.ShowDetailsCategory = false;
+    }
+    if (text = 'expense'){
+      this.CreatingExpense = false;
+      this.ShowDetails = false;
+    }
   }
 
-  created_succesfullyCategory(){    
-    this.CreatingCategory = false;
-    this.ShowDetailsCategory = false;
-  }
 
   create_new_category(){
     this.add_Category = !this.add_Category;

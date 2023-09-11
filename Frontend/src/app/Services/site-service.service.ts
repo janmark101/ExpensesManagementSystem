@@ -97,4 +97,27 @@ export class SiteServiceService {
     return this.http.post(`${this.Api_Url}Category.json`,category);
   }
   
+  deleteExpense(expense:any){
+    return this.http.delete(`${this.Api_Url}Expenses/${expense.id}.json`,expense); 
+  }
+
+  deleteTransaction(transaction:any){
+    return this.http.delete(`${this.Api_Url}Transaction/${transaction.id}.json`,transaction); 
+  }
+
+  deleteCategory(category:any){
+    return this.http.delete(`${this.Api_Url}Category/${category.id}.json`,category); 
+  }
+
+  EditExpense(expense:any){
+    return this.http.put(`${this.Api_Url}Expenses/${expense.id}.json`,expense); 
+  }
+
+  EditTransaction(transaction:any){
+    return this.http.put(`${this.Api_Url}Transaction/${transaction.id}.json`,transaction); 
+  }
+
+  EditCategory(category:any){
+    return this.http.put(`${this.Api_Url}Category/${category.id}.json`,category); 
+  }
 }

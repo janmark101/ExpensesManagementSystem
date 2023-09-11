@@ -1,0 +1,143 @@
+<div class="panel">
+    <div style="display: flex;justify-content: space-between;">
+        <div style="text-align: left;">
+            <h1 class="header">Expenses</h1>
+        </div>    
+    <div  style="text-align: right;cursor: pointer;" (click)="expandTable('expense')">
+        <div style="display: flex">
+            <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
+            <p class="expand">{{option[0]}}</p>
+        </div>
+    </div>
+</div>
+<hr>
+    <div *ngIf="expandExpense">
+        <div class="panel-items">
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDateExpense" >
+                    <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker #picker ></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="panel-items">
+                <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
+            
+                <select [(ngModel)]="selectedCategory" name="selectedCategory" style="margin-left: 5px;" (change)="FilterExpense()" class="custom-select">
+                    <option value="">Choose Category</option>
+                    <option *ngFor="let category of Categories">{{ category.category_name }}</option>
+                </select>
+            </div>
+            <div class="panel-items">
+                <fa-icon [icon]="ExpensesIcons[2].icon"></fa-icon>
+                <small style="margin-left: 5px;" (click)="ResetFilter('Expense')">{{ExpensesIcons[2].text}}</small>
+            </div>
+            <br>
+
+            <div class="table-header" >
+                <div class="table-column" *ngFor="let detail of ExpenseDetails">
+                    <fa-icon [icon]="detail.icon"></fa-icon>
+                    <small style="margin-left: 5px;cursor: pointer;"(click)="OrderBy(detail.text,'Expense')">{{detail.text}}</small> 
+                </div>
+            </div>
+            <div class="table-row" *ngFor="let item of FilterExpense();let i = index" (mouseenter)="ShowIcons()" (mouseleave)="HideIcons()">
+                <div class="table-column">{{ item.id }}</div>
+                <div class="table-column">{{ item.date }}</div>
+                <div class="table-column">{{ CategoryName(item.category_name) }}</div>
+                <div class="table-column">{{ item.description }}</div>
+                <div class="table-column">{{ item.amount }} PLN</div>
+                <div *ngIf="isHovered" class="icons">
+                    <fa-icon [icon]="HoveredIcons[0]" class="icon" style="color: red;" (click)="Delete(item,'expense',i)"></fa-icon>
+                    <fa-icon [icon]="HoveredIcons[1]" class="icon" style="color: black;" (click)="Edit(item,'expense',i)"></fa-icon>
+                  </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel">
+    <div style="display: flex;justify-content: space-between;">
+        <div style="text-align: left;">
+            <h1 class="header">Transactions</h1>
+        </div>    
+    <div  style="text-align: right;cursor: pointer;" (click)="expandTable('transaction')">
+        <div style="display: flex">
+            <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
+            <p class="expand">{{option[1]}}</p>
+        </div>
+    </div>
+</div>
+<hr>
+<div *ngIf="expandTransaction"> 
+    <div class="panel-items">
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedDateTransaction" >
+            <mat-datepicker-toggle matIconSuffix [for]="picker2" ></mat-datepicker-toggle>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker #picker2 ></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <div class="panel-items">
+        <fa-icon [icon]="ExpensesIcons[1].icon"></fa-icon>
+       <input placeholder="Search by expense ID" style="margin-left: 5px;width: 75%;font-size: 17px;" [(ngModel)]="selectedExpenseID" class="custom-select">
+    </div>
+    <div class="panel-items">
+        <fa-icon [icon]="ExpensesIcons[2].icon"></fa-icon>
+        <small style="margin-left: 5px;" (click)="ResetFilter('Transaction')">{{ExpensesIcons[2].text}}</small>
+    </div>
+    <br>
+    <div class="table-header" >
+        <div class="table-column" *ngFor="let detail of TransactionDetail">
+            <fa-icon [icon]="detail.icon"></fa-icon>
+            <small style="margin-left: 5px;cursor: pointer;"(click)="OrderBy(detail.text,'Transaction')">{{detail.text}}</small> 
+        </div>
+    </div>
+    <div class="table-row" *ngFor="let item of FilterTransactions();let i = index" (mouseenter)="ShowIcons()" (mouseleave)="HideIcons()">
+        <div class="table-column">{{ item.id }}</div>
+        <div class="table-column">{{ item.date }}</div>
+        <div class="table-column">{{ item.expense }}</div>
+        <div class="table-column">{{ item.description }}</div>
+        <div class="table-column">{{ item.amount }} PLN</div>
+        <div *ngIf="isHovered" class="icons">
+            <fa-icon [icon]="HoveredIcons[0]" class="icon" style="color: red;" (click)="Delete(item,'transaction',i)"></fa-icon>
+            <fa-icon [icon]="HoveredIcons[1]" class="icon" style="color: black;" (click)="Edit(item,'transaction',i)"></fa-icon>
+          </div>
+      </div>
+</div>
+</div>
+
+
+
+<div class="panel">
+    <div style="display: flex;justify-content: space-between;" >
+        <div style="text-align: left;">
+            <h1 class="header">Categories</h1>
+        </div>    
+    <div  style="text-align: right; cursor: pointer;" (click)="expandTable('category')">
+        <div style="display: flex">
+            <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
+            <p class="expand">{{option[2]}}</p>
+        </div>
+    </div>
+</div>
+    <hr>
+    <div *ngIf="expandCategory">
+        <div class="table-header" >
+            <div class="table-column" >
+                <small style="margin-left: 5px;cursor: pointer;">ID</small> 
+            </div>
+            <div class="table-column">
+                <small style="margin-left: 5px;cursor: pointer;">Name</small> 
+            </div>
+        </div>
+        <div class="table-row" *ngFor="let item of Categories;let i =index" (mouseenter)="ShowIcons()" (mouseleave)="HideIcons()">
+            <div class="table-column">{{ item.id }}</div>
+            <div class="table-column">{{ item.category_name }}</div>
+            <div *ngIf="isHovered" class="icons">
+                <fa-icon [icon]="HoveredIcons[0]" class="icon" style="color: red;" (click)="Delete(item,'category',i)"></fa-icon>
+              </div>
+          </div>
+    </div>
+</div>

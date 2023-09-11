@@ -22,6 +22,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { AddExpenseComponent } from './Site/add-expense/add-expense.component';
 import { AddTransactionComponent } from './Site/add-transaction/add-transaction.component';
 import { LoadCircleComponent } from './Site/load-circle/load-circle.component';
+import { ManagementComponent } from './Site/management/management.component';
+import {
+  NgxAwesomePopupModule,
+  ConfirmBoxConfigModule
+} from '@costlydeveloper/ngx-awesome-popup';
+import { MatDialogModule} from '@angular/material/dialog';
+import { EditComponent } from './Site/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,9 @@ import { LoadCircleComponent } from './Site/load-circle/load-circle.component';
     ChartComponent,
     AddExpenseComponent,
     AddTransactionComponent,
-    LoadCircleComponent
+    LoadCircleComponent,
+    ManagementComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +58,9 @@ import { LoadCircleComponent } from './Site/load-circle/load-circle.component';
     MatInputModule, 
     MatDatepickerModule, 
     MatNativeDateModule,
+    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
+    ConfirmBoxConfigModule.forRoot(),
+    MatDialogModule,
   ],
   providers: [SiteServiceService],
   bootstrap: [AppComponent]

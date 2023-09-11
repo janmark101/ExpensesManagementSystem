@@ -1,15 +1,23 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { faList,faTrash,faGear } from '@fortawesome/free-solid-svg-icons';
 import { take } from 'rxjs';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
-
+import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
+import { MatDialog} from '@angular/material/dialog';
+import { EditComponent } from '../edit/edit.component';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-management',
+  templateUrl: './management.component.html',
+  styleUrls: ['./management.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ManagementComponent implements OnInit{
+
+  faList = faList
+  
+  isHovered  : boolean = false;
+  HoveredIcons = [faTrash,faGear];
 
   selectedCategory :any = "";
   selectedDateExpense :Date |any ;
@@ -17,6 +25,14 @@ export class HomeComponent implements OnInit {
   resetFilterExpense : boolean = false;
   resetFilterTransaction : boolean = false;
   selectedExpenseID : number |any;
+
+  expandExpense : boolean = true;
+  expandTransaction : boolean = false;
+  expandCategory : boolean = false;
+
+  option : string[] = ['Expand','Expand','Expand'];
+
+  constructor(private Service : SiteServiceService,private confirmBoxEvokeService: ConfirmBoxEvokeService, private dialog: MatDialog){}
 
   ExpensesIcons :any;
   ExpenseDetails :any;
@@ -26,11 +42,7 @@ export class HomeComponent implements OnInit {
   public Transactions : any[] = [];
   public Expenses : any[] = [];
 
-  constructor(private Service : SiteServiceService){}
-
-
   ngOnInit(): void {
-
     this.ExpensesIcons = this.Service.ExpensesIcons;
     this.ExpenseDetails = this.Service.ExpenseDetails;
     this.TransactionDetail = this.Service.TransactionDetail;
@@ -58,12 +70,36 @@ export class HomeComponent implements OnInit {
       console.error(error);
       
     });
-
-      
-    
   }
 
+  expandTable(text:string){
+    switch (text){
+      case 'expense': {       
+        this.expandExpense = !this.expandExpense;
+        this.changeoption(0);
+        break;
+      }
+      case 'transaction': {
+        this.expandTransaction = !this.expandTransaction;
+        this.changeoption(1);
+        break;
+      }
+      case 'category': {
+        this.expandCategory = !this.expandCategory;
+        this.changeoption(2);
+        break;
+      }
+    }
+  }
 
+  changeoption(id:number){
+    if(this.option[id] == 'Hide'){
+      this.option[id] = 'Expand';
+    }
+    else if(this.option[id] == 'Expand'){
+      this.option[id] = 'Hide';
+    }
+  }
 
   CategoryName(itemID:number){
     for (const category of this.Categories){
@@ -235,10 +271,64 @@ export class HomeComponent implements OnInit {
 
     }
   }
+  
   ResetFilter(text:string){
     if (text == 'Expense')
       this.resetFilterExpense = true;
     if (text == 'Transaction')
       this.resetFilterTransaction = true;
   }
+
+  ShowIcons(){
+    this.isHovered = true;
+  }
+
+  HideIcons(){
+    this.isHovered = false;
+  }
+
+  Delete(item:any,text:string,id:number){
+    this.confirmBoxEvokeService.danger('Confirm delete!', 'Are you sure you want to delete it?\n(All linked items will be deleted!)', 'Confirm', 'Decline')
+    .subscribe(resp => {
+
+      if(resp.success === true){
+      switch(text){
+        case "expense" : {
+          this.Service.deleteExpense(item).subscribe((data:any)=>{
+            this.Expenses.splice(id,1);
+          });
+          break;
+        }
+        case "transaction" : {
+          this.Service.deleteTransaction(item).subscribe((data:any)=>{
+            this.Transactions.splice(id,1);
+          });
+          break;
+        }
+        case "category" : {
+          this.Service.deleteCategory(item).subscribe((data:any)=>{
+            this.Categories.splice(id,1);
+          });
+          break;
+        }
+      }
+    }
+    });
+  }
+
+  Edit(item:any,text:string,id:number){
+    const dialogRef = this.dialog.open(EditComponent, {
+      width: '700px',
+      data: {item : item, which: text,categories : this.Categories, Expenses : this.Expenses} 
+    });
+
+    dialogRef.afterClosed().subscribe((res:any) =>{
+      if(text == 'expense')
+        this.Expenses[id] = res;
+      if(text == 'transaction') //tu trzeba odswiezyc zeby sie zaaktualizwalo to expense amount 
+        this.Transactions[id] = res;
+      });
+    
+  }
 }
+

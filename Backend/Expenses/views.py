@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
@@ -44,3 +45,58 @@ class TransactionView(APIView):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    
+class ExpenseViewObject(APIView):
+    
+    def get_object(self,pk):
+        try : 
+            return Expensesdb.objects.get(pk=pk)
+        except Expensesdb.DoesNotExist:
+            raise Http404
+        
+    def delete(self,request,pk,format=None):        
+        expense = self.get_object(pk)
+        expense.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def put(self,request,pk,format=None):
+        expense = self.get_object(pk)
+        serializer = ExpensesSerializers(expense,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class CategoryViewObject(APIView):
+    def get_object(self,pk):
+        try :
+            return Category.objects.get(pk=pk)
+        except Category.DoesNotExist:
+            raise Http404
+        
+    def delete(self,request,pk,format=None):
+        category = self.get_object(pk)
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+class TransactionViewObject(APIView):
+    def get_object(self,pk):
+        try :
+            return Transaction.objects.get(pk=pk)
+        except:
+            raise Http404
+        
+    def delete(self,request,pk,format=None):
+        transaction = self.get_object(pk)
+        transaction.delete()
+        
+    def put(self,request,pk,format=None):
+        transaction = self.get_object(pk)
+        serializer = TransactionSerializers(transaction,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.error,status=status.HTTP_400_BAD_REQUEST)
+    
