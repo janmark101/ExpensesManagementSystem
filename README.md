@@ -25,6 +25,7 @@ Project is about managing expenses. The user can control what he spends his mone
 - Bootstrap
 - Django
 - Rest Framework
+- PostgreSQL
 
 
 
