@@ -26,7 +26,6 @@ export class EditComponent implements OnInit {
     this.Categories = this.data.categories;  
     this.item = this.data.item;
     this.Expenses = this.data.Expenses;
-    console.log(this.item);
     
   }
 
@@ -60,7 +59,7 @@ export class EditComponent implements OnInit {
         "id" : this.item.id
       };
       
-      this.Service.EditExpense(editedExpense).subscribe();
+      this.Service.EditExpense(editedExpense);
 
       this.dialogRef.close(editedExpense);
     }
@@ -90,7 +89,7 @@ export class EditComponent implements OnInit {
         "id" : this.item.id
       };      
       
-      this.Service.EditTransaction(editedTransaction).subscribe();
+      this.Service.EditTransaction(editedTransaction);
 
       this.dialogRef.close(editedTransaction);
     }

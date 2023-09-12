@@ -26,7 +26,7 @@ export class ManagementComponent implements OnInit{
   resetFilterTransaction : boolean = false;
   selectedExpenseID : number |any;
 
-  expandExpense : boolean = true;
+  expandExpense : boolean = false;
   expandTransaction : boolean = false;
   expandCategory : boolean = false;
 
@@ -325,7 +325,7 @@ export class ManagementComponent implements OnInit{
     dialogRef.afterClosed().subscribe((res:any) =>{
       if(text == 'expense')
         this.Expenses[id] = res;
-      if(text == 'transaction') //tu trzeba odswiezyc zeby sie zaaktualizwalo to expense amount 
+      if(text == 'transaction') 
         this.Transactions[id] = res;
       });
     

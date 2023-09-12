@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { take } from 'rxjs';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
-import 'chartjs-plugin-datalabels';
+
 
 
 @Component({
@@ -105,7 +105,7 @@ export class ChartComponent implements OnInit{
             options: {
               plugins: {
                 legend: {
-                  display: false // Ukryj legendę
+                  display: false
                 }
               }
             }
@@ -119,7 +119,7 @@ export class ChartComponent implements OnInit{
             options: {
               plugins: {
                 legend: {
-                  display: false // Ukryj legendę
+                  display: false 
                 }
               }
             }
@@ -140,7 +140,7 @@ export class ChartComponent implements OnInit{
               options: {
                 plugins: {
                   legend: {
-                    display: false // Ukryj legendę
+                    display: false 
                   }
                 }
               }

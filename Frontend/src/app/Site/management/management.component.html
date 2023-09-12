@@ -1,9 +1,9 @@
 <div class="panel">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between;cursor: pointer;" (click)="expandTable('expense')">
         <div style="text-align: left;">
             <h1 class="header">Expenses</h1>
         </div>    
-    <div  style="text-align: right;cursor: pointer;" (click)="expandTable('expense')">
+    <div  style="text-align: right;cursor: pointer;" >
         <div style="display: flex">
             <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
             <p class="expand">{{option[0]}}</p>
@@ -57,11 +57,11 @@
 
 
 <div class="panel">
-    <div style="display: flex;justify-content: space-between;">
+    <div style="display: flex;justify-content: space-between;cursor: pointer;" (click)="expandTable('transaction')">
         <div style="text-align: left;">
             <h1 class="header">Transactions</h1>
         </div>    
-    <div  style="text-align: right;cursor: pointer;" (click)="expandTable('transaction')">
+    <div  style="text-align: right;cursor: pointer;" >
         <div style="display: flex">
             <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
             <p class="expand">{{option[1]}}</p>
@@ -111,11 +111,11 @@
 
 
 <div class="panel">
-    <div style="display: flex;justify-content: space-between;" >
+    <div style="display: flex;justify-content: space-between;cursor: pointer;" (click)="expandTable('category')">
         <div style="text-align: left;">
             <h1 class="header">Categories</h1>
         </div>    
-    <div  style="text-align: right; cursor: pointer;" (click)="expandTable('category')">
+    <div  style="text-align: right; cursor: pointer;" >
         <div style="display: flex">
             <fa-icon [icon]="faList" style="margin : 17px 0px 0px 10px;font-size: 25px;"></fa-icon>
             <p class="expand">{{option[2]}}</p>
