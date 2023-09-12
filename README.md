@@ -72,3 +72,8 @@ ng serve
 ```
 
 Navigate to `http://localhost:4200/`.
+Home page : 
+![Home page](readme_images/home.png)
+
+Management page : 
+![Management page](readme_images/Management.png)
