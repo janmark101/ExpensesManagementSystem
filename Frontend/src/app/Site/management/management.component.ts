@@ -323,10 +323,12 @@ export class ManagementComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe((res:any) =>{
-      if(text == 'expense')
+      if(res != 'cancel'){
+        if(text == 'expense')
         this.Expenses[id] = res;
       if(text == 'transaction') 
         this.Transactions[id] = res;
+      }
       });
     
   }

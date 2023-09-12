@@ -59,13 +59,11 @@ export class EditComponent implements OnInit {
         "id" : this.item.id
       };
       
-      this.Service.EditExpense(editedExpense);
+      this.Service.EditExpense(editedExpense).subscribe();
 
       this.dialogRef.close(editedExpense);
     }
-    else{
-      this.dialogRef.close();
-    }
+
   }
 
   OnSubmitTransaction(form : NgForm){
@@ -89,19 +87,16 @@ export class EditComponent implements OnInit {
         "id" : this.item.id
       };      
       
-      this.Service.EditTransaction(editedTransaction);
+      this.Service.EditTransaction(editedTransaction).subscribe();
 
       this.dialogRef.close(editedTransaction);
     }
-    
-    else{
-      this.dialogRef.close();
-    }
+
   }
   
 
   Cancel(){
-    this.dialogRef.close();
+    this.dialogRef.close('cancel');
   }
 
   CategoryName(){
