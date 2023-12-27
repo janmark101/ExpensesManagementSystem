@@ -51,7 +51,6 @@ export class ManagementComponent implements OnInit{
       this.Categories = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
 
@@ -59,7 +58,6 @@ export class ManagementComponent implements OnInit{
       this.Expenses = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
 
@@ -67,7 +65,6 @@ export class ManagementComponent implements OnInit{
       this.Transactions = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
   }
@@ -294,20 +291,20 @@ export class ManagementComponent implements OnInit{
       if(resp.success === true){
       switch(text){
         case "expense" : {
-          this.Service.deleteExpense(item).subscribe((data:any)=>{
-            this.Expenses.splice(id,1);
+          this.Service.deleteExpense(item.id).subscribe((data:any)=>{
+            location.reload(); 
           });
           break;
         }
         case "transaction" : {
-          this.Service.deleteTransaction(item).subscribe((data:any)=>{
-            this.Transactions.splice(id,1);
+          this.Service.deleteTransaction(item.id).subscribe((data:any)=>{
+            location.reload();
           });
           break;
         }
         case "category" : {
-          this.Service.deleteCategory(item).subscribe((data:any)=>{
-            this.Categories.splice(id,1);
+          this.Service.deleteCategory(item.id).subscribe((data:any)=>{
+            location.reload();
           });
           break;
         }

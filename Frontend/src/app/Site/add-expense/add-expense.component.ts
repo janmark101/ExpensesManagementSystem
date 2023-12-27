@@ -4,6 +4,7 @@ import { take } from 'rxjs';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
 import { format } from 'date-fns';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 @Component({
@@ -31,13 +32,11 @@ export class AddExpenseComponent implements OnInit{
   ShowDetailsCategory : boolean = false;
   
 
-  constructor(private Service :SiteServiceService){}
+  constructor(private Service :SiteServiceService,private Auth:AuthService){}
 
   ngOnInit(): void {
     this.Service.getCategory().pipe(take(1)).subscribe((data:any)=>{
       this.Categories = data;
-      console.log(data);
-      
       
     })
   }
@@ -60,7 +59,7 @@ export class AddExpenseComponent implements OnInit{
         "category_name" : Category_id,
         "date" : format(this.selectedDateExpense,'yyyy-MM-dd'),
         "description" : form.value.description,
-  
+        "user" : this.Auth.getUserFromLocalStorage().user_id,
       };  
 
 
@@ -74,7 +73,6 @@ export class AddExpenseComponent implements OnInit{
         },1200);
           
         },error=>{
-          console.error(error);
           this.ShowError = true; 
         });
 
@@ -87,7 +85,8 @@ export class AddExpenseComponent implements OnInit{
   OnSubmitCategory(form:NgForm){
     if(form.valid){
       let newCategory = {
-        category_name:form.value.category
+        category_name:form.value.category,
+        "user" : this.Auth.getUserFromLocalStorage().user_id,
       }
       
       this.Service.createCategory(newCategory).subscribe(response =>{

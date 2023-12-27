@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
       this.Categories = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
 
@@ -47,7 +46,6 @@ export class HomeComponent implements OnInit {
       this.Expenses = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
 
@@ -55,7 +53,6 @@ export class HomeComponent implements OnInit {
       this.Transactions = data;
       
     },(error:any)=>{
-      console.error(error);
       
     });
 
@@ -173,6 +170,7 @@ export class HomeComponent implements OnInit {
 
     }
   }
+
 
   FilterTransactions(){ 
     let filterExpenseID = false;

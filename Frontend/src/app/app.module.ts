@@ -25,6 +25,9 @@ import {
 } from '@costlydeveloper/ngx-awesome-popup';
 import { MatDialogModule} from '@angular/material/dialog';
 import { EditComponent } from './Site/edit/edit.component';
+import { LoginComponent } from './Site/login/login.component';
+import { RegisterComponent } from './Site/register/register.component';
+import { AuthService } from './Services/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { EditComponent } from './Site/edit/edit.component';
     AddTransactionComponent,
     LoadCircleComponent,
     ManagementComponent,
-    EditComponent
+    EditComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,7 @@ import { EditComponent } from './Site/edit/edit.component';
     ConfirmBoxConfigModule.forRoot(),
     MatDialogModule,
   ],
-  providers: [SiteServiceService],
+  providers: [SiteServiceService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

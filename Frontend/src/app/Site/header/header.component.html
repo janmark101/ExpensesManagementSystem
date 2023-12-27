@@ -1,16 +1,35 @@
 <!-- Side navigation -->
 <div class="sidenav" >
-    <div class="sidenav-icons" *ngFor="let icon of icons" routerLink="{{icon.router}}">
-        <fa-icon [icon]="icon.icon" >
+    <div class="sidenav-icons"  >
+        <fa-icon [icon]="icons[0].icon" routerLink="{{icons[0].router}}">
         </fa-icon>
-        <span style="font-size: 20px;">{{icon.name}}</span>
-    </div>
-
+        <span style="font-size: 20px;">{{icons[0].name}}</span>
+      </div>
+      <div class="sidenav-icons"  >
+        <fa-icon [icon]="icons[1].icon" routerLink="{{icons[1].router}}">
+        </fa-icon>
+        <span style="font-size: 20px;">{{icons[1].name}}</span>
+      </div>
+      <div class="sidenav-icons"  >
+        <fa-icon [icon]="icons[2].icon" routerLink="{{icons[2].router}}">
+        </fa-icon>
+        <span style="font-size: 20px;">{{icons[2].name}}</span>
+      </div>
+      <div class="sidenav-icons" routerLink="{{icons[3].router}}" >
+        <fa-icon [icon]="icons[3].icon" >
+        </fa-icon>
+        <span style="font-size: 20px;">{{icons[3].name}}</span>
+      </div>
+      <div class="sidenav-icons"  >
+        <fa-icon [icon]="icons[4].icon" (click)="Logout()">
+        </fa-icon>
+        <span style="font-size: 20px;">{{icons[4].name}}</span>
+      </div>
   </div>
   
   <!-- Page content -->
-  <div class="main">
-    <router-outlet>
+  <div class="main" >
+    <router-outlet >
     
     </router-outlet>
   </div>

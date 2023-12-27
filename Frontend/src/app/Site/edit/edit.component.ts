@@ -2,6 +2,7 @@ import { Component, Inject,OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { format } from 'date-fns';
+import { AuthService } from 'src/app/Services/auth.service';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { SiteServiceService } from 'src/app/Services/site-service.service';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<EditComponent>, @Inject(MAT_DIALOG_DATA) private data: any,private Service :SiteServiceService){}
+  constructor(private dialogRef: MatDialogRef<EditComponent>, @Inject(MAT_DIALOG_DATA) private data: any,private Service :SiteServiceService,private Auth:AuthService){}
 
   text : string |any;
   Categories : any[] = [];
@@ -56,7 +57,8 @@ export class EditComponent implements OnInit {
         "category_name": category_id,
         "date" : Date,
         "description" : form.value.description,
-        "id" : this.item.id
+        "id" : this.item.id,
+        "user" : this.Auth.getUserFromLocalStorage().user_id,
       };
       
       this.Service.EditExpense(editedExpense).subscribe();
@@ -84,7 +86,8 @@ export class EditComponent implements OnInit {
         "date" : Date,
         "description" : form.value.description,
         "expense" : parseInt(form.value.selectedExpense),
-        "id" : this.item.id
+        "id" : this.item.id,
+        "user" : this.Auth.getUserFromLocalStorage().user_id,
       };      
       
       this.Service.EditTransaction(editedTransaction).subscribe();

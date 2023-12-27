@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {faCalendarDays,faFilter,faCaretDown,faXmark} from '@fortawesome/free-solid-svg-icons'
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -71,53 +72,116 @@ export class SiteServiceService {
 
   private Api_Url = "http://127.0.0.1:8000/"
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private Auth: AuthService) { }
 
   getExpenses(){
-    return this.http.get(`${this.Api_Url}Expenses.json`);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+
+    return this.http.get(`${this.Api_Url}Expenses.json`,{headers});
   }
 
   getCategory(){
-    return this.http.get(`${this.Api_Url}Category.json`);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+
+    return this.http.get(`${this.Api_Url}Category.json`,{headers});
   }
 
   getTransaction(){
-    return this.http.get(`${this.Api_Url}Transaction.json`);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.get(`${this.Api_Url}Transaction.json`,{headers});
   }
 
   createExpense(expense:any){
-    return this.http.post(`${this.Api_Url}Expenses.json`,expense);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.post(`${this.Api_Url}Expenses.json`,expense,{headers});
   }
 
   createTransaction(transaction:any){
-    return this.http.post(`${this.Api_Url}Transaction.json`,transaction);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.post(`${this.Api_Url}Transaction.json`,transaction,{headers});
   }
 
   createCategory(category:any){
-    return this.http.post(`${this.Api_Url}Category.json`,category);
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.post(`${this.Api_Url}Category.json`,category,{headers});
   }
   
   deleteExpense(expense:any){
-    return this.http.delete(`${this.Api_Url}Expenses/${expense.id}.json`,expense); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+
+    return this.http.delete(`${this.Api_Url}Expenses/${expense}`,{headers}); 
   }
 
   deleteTransaction(transaction:any){
-    return this.http.delete(`${this.Api_Url}Transaction/${transaction.id}.json`,transaction); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.delete(`${this.Api_Url}Transaction/${transaction}`,{headers}); 
   }
 
   deleteCategory(category:any){
-    return this.http.delete(`${this.Api_Url}Category/${category.id}.json`,category); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.delete(`${this.Api_Url}Category/${category}`,{headers}); 
   }
 
   EditExpense(expense:any){
-    return this.http.put(`${this.Api_Url}Expenses/${expense.id}.json`,expense); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.put(`${this.Api_Url}Expenses/${expense.id}.json`,expense,{headers}); 
   }
 
   EditTransaction(transaction:any){
-    return this.http.put(`${this.Api_Url}Transaction/${transaction.id}.json`,transaction); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.put(`${this.Api_Url}Transaction/${transaction.id}.json`,transaction,{headers}); 
   }
 
   EditCategory(category:any){
-    return this.http.put(`${this.Api_Url}Category/${category.id}.json`,category); 
+    let user = this.Auth.getUserFromLocalStorage();
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${user.token}`
+    });
+    return this.http.put(`${this.Api_Url}Category/${category.id}.json`,category,{headers}); 
   }
 }

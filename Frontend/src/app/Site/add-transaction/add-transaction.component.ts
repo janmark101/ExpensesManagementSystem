@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { format } from 'date-fns';
 import { take } from 'rxjs';
+import { AuthService } from 'src/app/Services/auth.service';
 import { SiteServiceService } from 'src/app/Services/site-service.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class AddTransactionComponent {
   
   ExpenseDetails : any;
 
-  constructor(private Service :SiteServiceService){}
+  constructor(private Service :SiteServiceService,private Auth:AuthService){}
 
   ngOnInit(): void {
     this.ExpenseDetails = this.Service.ExpenseDetails;
@@ -35,15 +36,12 @@ export class AddTransactionComponent {
     this.Service.getExpenses().pipe(take(1)).subscribe((data:any)=>{
       this.Expenses = data;
       this.Expenses = this.Expenses.sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
-      console.log(data);
       
       
     });
 
     this.Service.getCategory().pipe(take(1)).subscribe((data:any)=>{
       this.Categories = data;
-      console.log(data);
-      
       
     })
   }
@@ -59,7 +57,8 @@ export class AddTransactionComponent {
           "amount" : form.value.amount,
           "date" : format(this.selectedDateTransaction,'yyyy-MM-dd'),
           "description" : form.value.description,
-          "expense" : parseInt(this.selectedExpense.split('ID : ')[1])
+          "expense" : parseInt(this.selectedExpense.split('ID : ')[1]),
+          "user" : this.Auth.getUserFromLocalStorage().user_id,
         };  
         
   
@@ -70,7 +69,6 @@ export class AddTransactionComponent {
           },1200);
             
           },error=>{
-            console.error(error);
             this.ShowError = true; 
           });
         
@@ -88,6 +86,7 @@ export class AddTransactionComponent {
   created_succesfully(){    
     this.CreatingTransaction = false;
     this.ShowDetails = false;
+    location.reload();
   }
 
   CategoryName(itemID:number){

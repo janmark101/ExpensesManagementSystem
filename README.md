@@ -5,18 +5,12 @@ Project is about managing expenses. The user can control what he spends his mone
 
 
 ## Features
-
+- login and registration system
 - Add expense categories
 - Add expense 
 - Add transactions along with the amount of money spent associated with the expense
 - Delete / Edit expenses and transactions
 
-
-## Tech Stack
-
-**Client:** React, Redux, TailwindCSS
-
-**Server:** Node, Express
 
 
 ## 🛠 Built With
